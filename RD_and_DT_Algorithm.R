@@ -2,18 +2,6 @@
 #install.packages("spatstat")
 #install.packages("igraph")
 
-rm(list = ls())                 # Clear variables
-while (!is.null(dev.list())) dev.off()  # Close all plots
-
-
-library("rstudioapi") # Load rstudioapi package
-setwd(dirname(getActiveDocumentContext()$path)) # Set working directory to source file location
-getwd() # Check updated working directory
-
-
-
-
-
 
 
 library(spatial)
