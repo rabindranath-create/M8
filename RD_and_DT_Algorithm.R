@@ -4,6 +4,9 @@
 
 
 
+
+
+
 library(spatial)
 library(spatstat)
 library(igraph)
@@ -529,10 +532,7 @@ M16 <- function(obs_info){
       Int_info <- output_Ginfo$Int_info
       df_edge_ed <- as_data_frame(G_ed, what="edges")
       # some record vectors
-      
-      reach_t <- F
-      path_record <- s
-      
+
       
     }
     
@@ -646,9 +646,7 @@ M8 <- function(obs_info){
       df_edge_ed <- as_data_frame(G_ed, what="edges")
       # some record vectors
       
-      reach_t <- F
-      path_record <- s
-      
+
       
     }
     
@@ -760,8 +758,6 @@ M4 <- function(obs_info){
       df_edge_ed <- as_data_frame(G_ed, what="edges")
       # some record vectors
       
-      reach_t <- F
-      path_record <- s
       
       
     }
