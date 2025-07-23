@@ -6,7 +6,6 @@
 
 
 
-
 library(spatial)
 library(spatstat)
 library(igraph)
@@ -522,19 +521,53 @@ M16 <- function(obs_info){
         }
       }
       
+      
+      
+      
+      if(length(D_record) == 16){
+        
+        output_Ginfo1 <- Update_graph_intersect_Z(G_original, x, y, obs_info, r)
+        G_ed1 <- output_Ginfo1$G_info
+        
+        df_edge_ed <- as_data_frame(G_ed1, what="edges")
+        
+        G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
+        
+        output <- shortest_paths(G_ed,
+                                 which(vertex.attributes(G_ed)$name==as.character(s)),
+                                 which(vertex.attributes(G_ed)$name==as.character(t)),
+                                 weights=df_edge_ed$Cost, output="both",algorithm="dijkstra")
+        V_list <- c(as.numeric(attributes(output$vpath[[1]])$names))
+        # follow the path until the disambiguation state
+        for (i in 2:length(V_list)){
+          edge_length <- Dist_Euclidean(as.numeric(vertice_list[V_list[i-1],1:2]),as.numeric(vertice_list[V_list[i],1:2]))
+          length_total <- length_total+edge_length
+          
+        }
+        
+        
+        reach_t=T
+        output_final <- list(Length_total=length_total,
+                             Cost_total=cost_total,Disambiguate_state=D_record)
+        
+        
+      }
+      
+      
+      
+      
+      else{
       G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
-    }
+      }
+      
+      
+      
+      
+      
+      
+      }
     
-    if(length(D_record) >= 16){
-      
-      output_Ginfo <- Update_graph_intersect_Z(G_original, x, y, obs_info, r)
-      G_ed <- output_Ginfo$G_info
-      Int_info <- output_Ginfo$Int_info
-      df_edge_ed <- as_data_frame(G_ed, what="edges")
-      # some record vectors
-
-      
-    }
+    
     
     
   #while  
@@ -543,7 +576,6 @@ M16 <- function(obs_info){
   
   return(output_final)
 }
-
 
 
 
@@ -635,20 +667,53 @@ M8 <- function(obs_info){
         }
       }
       
-      G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
+      
+      
+      
+      if(length(D_record) == 8){
+        
+        output_Ginfo1 <- Update_graph_intersect_Z(G_original, x, y, obs_info, r)
+        G_ed1 <- output_Ginfo1$G_info
+        
+        df_edge_ed <- as_data_frame(G_ed1, what="edges")
+        
+        G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
+        
+        output <- shortest_paths(G_ed,
+                                 which(vertex.attributes(G_ed)$name==as.character(s)),
+                                 which(vertex.attributes(G_ed)$name==as.character(t)),
+                                 weights=df_edge_ed$Cost, output="both",algorithm="dijkstra")
+        V_list <- c(as.numeric(attributes(output$vpath[[1]])$names))
+        # follow the path until the disambiguation state
+        for (i in 2:length(V_list)){
+          edge_length <- Dist_Euclidean(as.numeric(vertice_list[V_list[i-1],1:2]),as.numeric(vertice_list[V_list[i],1:2]))
+          length_total <- length_total+edge_length
+          
+        }
+        
+        
+        reach_t=T
+        output_final <- list(Length_total=length_total,
+                             Cost_total=cost_total,Disambiguate_state=D_record)
+        
+        
+      }
+      
+      
+      
+      
+      else{
+        G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
+      }
+      
+      
+      
+      
+      
+      
     }
     
-    if(length(D_record) >= 8){
-      
-      output_Ginfo <- Update_graph_intersect_Z(G_original, x, y, obs_info, r)
-      G_ed <- output_Ginfo$G_info
-      Int_info <- output_Ginfo$Int_info
-      df_edge_ed <- as_data_frame(G_ed, what="edges")
-      # some record vectors
-      
-
-      
-    }
+    
     
     
     #while  
@@ -657,6 +722,16 @@ M8 <- function(obs_info){
   
   return(output_final)
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -747,20 +822,53 @@ M4 <- function(obs_info){
         }
       }
       
-      G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
+      
+      
+      
+      if(length(D_record) == 4){
+        
+        output_Ginfo1 <- Update_graph_intersect_Z(G_original, x, y, obs_info, r)
+        G_ed1 <- output_Ginfo1$G_info
+        
+        df_edge_ed <- as_data_frame(G_ed1, what="edges")
+        
+        G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
+        
+        output <- shortest_paths(G_ed,
+                                 which(vertex.attributes(G_ed)$name==as.character(s)),
+                                 which(vertex.attributes(G_ed)$name==as.character(t)),
+                                 weights=df_edge_ed$Cost, output="both",algorithm="dijkstra")
+        V_list <- c(as.numeric(attributes(output$vpath[[1]])$names))
+        # follow the path until the disambiguation state
+        for (i in 2:length(V_list)){
+          edge_length <- Dist_Euclidean(as.numeric(vertice_list[V_list[i-1],1:2]),as.numeric(vertice_list[V_list[i],1:2]))
+          length_total <- length_total+edge_length
+          
+        }
+        
+        
+        reach_t=T
+        output_final <- list(Length_total=length_total,
+                             Cost_total=cost_total,Disambiguate_state=D_record)
+        
+        
+      }
+      
+      
+      
+      
+      else{
+        G_ed <- graph_from_data_frame(df_edge_ed,directed = F)
+      }
+      
+      
+      
+      
+      
+      
     }
     
-    if(length(D_record) >= 4){
-      
-      output_Ginfo <- Update_graph_intersect_Z(G_original, x, y, obs_info, r)
-      G_ed <- output_Ginfo$G_info
-      Int_info <- output_Ginfo$Int_info
-      df_edge_ed <- as_data_frame(G_ed, what="edges")
-      # some record vectors
-      
-      
-      
-    }
+    
     
     
     #while  
@@ -769,7 +877,4 @@ M4 <- function(obs_info){
   
   return(output_final)
 }
-
-
-
 
